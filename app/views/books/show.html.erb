@@ -1,0 +1,28 @@
+<section class="sct-color-1 slice">
+  <div class="container-fluid masonry-container">
+    <div class="row">
+ 
+      <div class="col-sm-6">
+        <h1>Book detail</h1>
+          <table class="table table-striped">
+            <tr>
+              <% if @book_detail.user.id == current_user.id %>
+              <th></th>
+              <th></th>
+              <th></th>
+              <% end %>
+            </tr>
+            <tr>
+              <td><%= attachment_image_tag @book_detail.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class: "img-circle pull-left profile-thumb" %></td>
+              <td><%= @book_detail.title %></td>
+              <td><%= @book_detail.body %></td>
+              <% if @book_detail.user.id == current_user.id %>
+              <td><%= link_to "Edit", edit_book_path(@book_detail), class:"edit_book_#{@book_detail.id}" %></td>
+              <td><%= link_to "Destroy", book_path(@book_detail), method: :delete, data: {confirm: "Are you sure?"}, class:"destroy_book_#{@book_detail.id}" %></td>
+              <% end %>
+            </tr>
+          </table>
+      </div>
+    </div>
+  </div>
+</section>
