@@ -1,25 +1,29 @@
 <div class="container">
-<div class="row">
-<div class="col-xs-3">
-  <h2>User info</h2>
-  <%= attachment_image_tag current_user, :profile_image_id, :fill, 60, 60, fallback:"no_image.jpg", format:'jpeg', class: "img-circle pull-left profile-thumb" %>
-  <table class="table">
-    <tr>
-      <th>name</th>
-      <th><%= current_user.name %></th>
-    </tr>
-    <tr>
-      <th>introduction</th>
-      <th><%= current_user.introduction %></th>
-    </tr>
-  </table>
-  </div>
+  <div class="row">
+    <div class="col-xs-3">
+      <h2>User info</h2>
+      <%= attachment_image_tag current_user, :profile_image_id, :fill, 60, 60, fallback:"no_image.jpg", format:'jpeg', class: "img-circle pull-left profile-thumb" %>
+      <table class="table">
+        <tr>
+          <th>name</th>
+          <th><%= current_user.name %></th>
+        </tr>
+        <tr>
+          <th>introduction</th>
+          <th><%= current_user.introduction %></th>
+        </tr>
+      </table>
+    </div>
   </div>
   <% if flash[:notice] %>
     <p><%= flash[:notice] %></p>
   <% end %>
 
   <% if @user.id == current_user.id %>
+    <%= link_to edit_user_path(user), class:"edit_user_#{current_user.id}" do %>
+       <button type="button" class="btn btn-default" style="width:24%"><i class="glyphicon glyphicon-wrench"></i></button>
+    <% end %>
+  <% else %>
     <%= link_to edit_user_path(user), class:"edit_user_#{current_user.id}" do %>
        <button type="button" class="btn btn-default" style="width:24%"><i class="glyphicon glyphicon-wrench"></i></button>
     <% end %>
@@ -36,16 +40,16 @@
     </div>
   <% end %>
 
-    <%= form_for(book) do |f| %>
-      <h2>New book</h2>
-        <h5 class="field">Title</h5>
-          <%= f.text_field :title, class: "booktitle" %>
-        <h5 class="field">opinion</h5>
+  <%= form_for(book) do |f| %>
+    <h2>New book</h2>
+      <h5 class="field">Title</h5>
+        <%= f.text_field :title, class: "booktitle" %>
+      <h5 class="field">opinion</h5>
         <%= f.text_area :body, class: "bookbody"%>
-        <div class="submit">
+      <div class="submit">
         <%= f.submit("Create Book", class:"btn btn-primary", style:"width:24%") %>
-        </div>
-    <% end %>
-    </div>
+      </div>
+  <% end %>
 </div>
+
 

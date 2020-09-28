@@ -1,36 +1,37 @@
 <div class="container">
-    <div class="row">
-      <div class="col-xs-3">
-        <%= render 'users/userinfo', {user: @user, book: @book} %>
-        <div class="col-xs-9">
+  <div class="row">
+    <div class="col-xs-3">
+      <%= render 'users/userinfo', {user: @user, book: @book} %>
+    </div>
+      <div class="col-xs-9">
         <h1>Book detail</h1>
         <div class="table-responsive">
           <table class="table">
-          <tbody>
-            <tr>
-              <td>
-                <%= link_to user_path(@user), class:"" do %>
-                <%= attachment_image_tag @book.user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", class:"img-circle pull-left profile-thumb" %>
-                <% end %>
-                <%= link_to user_path(@user), class: "" do %><%= @user.name %>
-                <% end %>
-              </td>
-              <td>
-                <%=link_to book_path(@book_detail), class:"" do %>
-                <%=@book_detail.title %>
-                <% end %>
-              </td>
-              <td><%= @book_detail.body %></td>
-              <% if @book_detail.user.id == current_user.id %>
-              <td><%= link_to "Edit", edit_book_path(@book_detail), class:"btn-sm btn-success" %></td>
-              <td><%= link_to "Destroy", book_path(@book_detail), method: :delete, data: {confirm: "Are you sure?"}, class:"btn-sm btn-danger" %></td>
-              <% end %>
-            </tr>
-          </tbody>
+            <tbody>
+              <tr>
+                <td>
+                  <%= link_to user_path(@user), class:"" do %>
+                  <%= attachment_image_tag @book.user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg", class:"img-circle pull-left profile-thumb", size:'50x50' %>
+                  <% end %>
+                  <%= link_to user_path(@user), class: "" do %><%= @user.name %>
+                  <% end %>
+                </td>
+                <td>
+                  <%=link_to book_path(@book_detail), class:"" do %>
+                  <%=@book_detail.title %>
+                  <% end %>
+                </td>
+                <td><%= @book_detail.body %></td>
+                  <% if @book_detail.user.id == current_user.id %>
+                <td><%= link_to "Edit", edit_book_path(@book_detail), class:"btn-sm btn-success" %></td>
+                <td><%= link_to "Destroy", book_path(@book_detail), method: :delete, data: {confirm: "Are you sure?"}, class:"btn-sm btn-danger" %></td>
+                  <% end %>
+              </tr>
+            </tbody>
           </table>
+        </div>
       </div>
     </div>
   </div>
-  </div>
-  </div>
 </div>
+
