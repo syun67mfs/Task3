@@ -1,3 +1,17 @@
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<% if @book.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <h3><%= @book.errors.count %> error prohibited this book from being saved:</h3>
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+  </div>
+<% end %>
 <div class="container">
   <div class="row">
     <div class="col-xs-3">
@@ -15,9 +29,6 @@
       </table>
     </div>
   </div>
-  <% if flash[:notice] %>
-    <p><%= flash[:notice] %></p>
-  <% end %>
 
   <% if @user.id == current_user.id %>
     <%= link_to edit_user_path(user), class:"edit_user_#{current_user.id}" do %>
@@ -27,17 +38,6 @@
     <%= link_to edit_user_path(user), class:"edit_user_#{current_user.id}" do %>
        <button type="button" class="btn btn-default" style="width:24%"><i class="glyphicon glyphicon-wrench"></i></button>
     <% end %>
-  <% end %>
-
-  <% if @book.errors.any? %>
-    <div id="error_explanation">
-      <h3><%= @book.errors.count %> error prohibited this book from being saved:</h3>
-        <ul>
-          <% @book.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-          <% end %>
-        </ul>
-    </div>
   <% end %>
 
   <%= form_for(book) do |f| %>
