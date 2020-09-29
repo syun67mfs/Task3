@@ -15,7 +15,7 @@
           </ul>
         </div>
       <% end %>
-      <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback:"no_image.jpg", format:'jpeg', class: "pull-left" %>
+      <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback:"no_image.jpg", format:'jpeg', class: "pull-left", size:'100x100' %>
       <table class="table">
         <tr>
           <th>name</th>
