@@ -1,21 +1,20 @@
 <% if flash[:notice] %>
   <p><%= flash[:notice] %></p>
 <% end %>
-
-<% if book.errors.any? %>
-  <div id="error_explanation" class="alert alert-danger">
-    <h3><%= book.errors.count %> error prohibited this book from being saved:</h3>
-      <ul>
-        <% book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-      </ul>
-  </div>
-<% end %>
 <div class="container">
   <div class="row">
     <div class="col-xs-3">
       <h2>User info</h2>
+      <% if book.errors.any? %>
+        <div id="error_explanation">
+          <h3><%= book.errors.count %> error prohibited this book from being saved:</h3>
+          <ul>
+            <% book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
       <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback:"no_image.jpg", format:'jpeg', class: "pull-left" %>
       <table class="table">
         <tr>
@@ -51,5 +50,4 @@
       </div>
   <% end %>
 </div>
-
 
